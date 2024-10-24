@@ -2,7 +2,7 @@ class Conversation {
   constructor(user, assistant, turns = []) {
     this.user = user;
     this.assistant = assistant;
-    this.turns = turns
+    this.turns = turns;
   }
 
   async advance() {
