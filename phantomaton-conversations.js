@@ -11,7 +11,12 @@ const conversations = () => ({
     user.resolver(),
     assistant.resolver(),
     conversation.resolver(),
-    conversation.provider([], () => (...args) => new Conversation(...args)),
+    conversation.provider([
+      user.resolve,
+      assistant.resolve
+    ], (user, assistant) =>
+      (turns) => new Conversation(user, assistant, turns)
+    ),
     conversation.aggregator([], () => (impls) => impls[0])
   ]
 });
