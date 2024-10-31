@@ -23,4 +23,16 @@ describe('phantomaton-conversations', () => {
     const conversation = container.resolve(conversations.conversation.resolve);
     expect(conversation[0]()).instanceof(Conversation);
   });
+
+  it('wires in user/assistant values', () => {
+    const user = { converse: () => 'hi' };
+    const assistant = { converse: () => 'Hello!' };
+    const container = hierophant();
+    plugin.install.forEach(component => container.install(component));
+    container.install(conversations.user.provider([], () => user));
+    container.install(conversations.assistant.provider([], () => assistant));
+    const conversation = container.resolve(conversations.conversation.resolve)[0]();
+    expect(conversation.user).to.equal(user);
+    expect(conversation.assistant).to.equal(assistant);
+  });
 });
