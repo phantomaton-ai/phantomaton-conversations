@@ -1,6 +1,6 @@
 {
   "name": "phantomaton-conversations",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "main": "phantomaton-conversations.js",
   "scripts": {
     "all": "lovecraft -a",
